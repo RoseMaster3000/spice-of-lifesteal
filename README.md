@@ -1,10 +1,6 @@
 # Spice of Life(steal)
 
-Spice of Lifesteal is a spin on the Spice of Life: Discovery, but for lifestealSMP server. It tracks food history, and when you hit certain milestones, you are rewarded a heart-consumable which you can consume to gain a heart.
-
-, but more geared toward finding more unique
-foods as you play. SOL: Discovery is best enjoyed with a mountain of new modded foods. Consider using Farmer's Delight
-with a bunch of addons!
+Spice of Lifesteal is a spin on the Spice of Life: Discovery, but for lifestealSMP server. It tracks food history, and when you hit certain milestones, you are rewarded a heart-consumable which you can consume to gain a heart. Ensure you use recipe mods for those milestones to actaully be met (we have a S curve that tops out 20 hearts:~250 foods)
 
 ## Configuration
 
