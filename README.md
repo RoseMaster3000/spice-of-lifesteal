@@ -1,6 +1,8 @@
-# Spice of Life Discovery
+# Spice of Life(steal)
 
-Spice of Life Discovery is a spin on the Spice of Life: Carrot Edition idea, but more geared toward finding more unique
+Spice of Lifesteal is a spin on the Spice of Life: Discovery, but for lifestealSMP server. It tracks food history, and when you hit certain milestones, you are rewarded a heart-consumable which you can consume to gain a heart.
+
+, but more geared toward finding more unique
 foods as you play. SOL: Discovery is best enjoyed with a mountain of new modded foods. Consider using Farmer's Delight
 with a bunch of addons!
 
