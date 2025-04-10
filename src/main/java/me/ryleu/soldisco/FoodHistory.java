@@ -32,9 +32,6 @@ public class FoodHistory implements IFoodHistory, AutoSyncedComponent {
         this.player = player;
     }
 
-    private void updateMaxHealth() {
-        ((IPlayer) player).soldisco$updateMaxHealth();
-    }
 
     @Override
     public void readFromNbt(@NotNull CompoundTag compoundTag, HolderLookup.@NotNull Provider registryLookup) {
@@ -65,7 +62,6 @@ public class FoodHistory implements IFoodHistory, AutoSyncedComponent {
         }
 
         FOOD_HISTORY_COMPONENT_KEY.sync(player);
-        updateMaxHealth();
     }
 
     @Override
@@ -86,7 +82,6 @@ public class FoodHistory implements IFoodHistory, AutoSyncedComponent {
     @Override
     public void sync() {
         FOOD_HISTORY_COMPONENT_KEY.sync(player, this);
-        updateMaxHealth();
     }
 
     @Override
@@ -113,7 +108,6 @@ public class FoodHistory implements IFoodHistory, AutoSyncedComponent {
                     (buf, p) ->
                             writeAddPacket(buf, toAdd)
             );
-            updateMaxHealth();
         }
         return result;
     }
@@ -132,7 +126,6 @@ public class FoodHistory implements IFoodHistory, AutoSyncedComponent {
                     (buf, p) ->
                             writeRemovePacket(buf, toRemove)
             );
-            updateMaxHealth();
         }
         return result;
     }
@@ -156,7 +149,6 @@ public class FoodHistory implements IFoodHistory, AutoSyncedComponent {
     public void clear() {
         history.clear();
         FOOD_HISTORY_COMPONENT_KEY.sync(player);
-        updateMaxHealth();
     }
 
     @Override

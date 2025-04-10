@@ -15,6 +15,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.StringTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import org.spongepowered.include.com.google.common.collect.ImmutableList;
@@ -24,17 +25,14 @@ import java.util.Iterator;
 
 public class FoodHistoryCommand {
     public static final int PERMISSION_LEVEL = 2;
+    private static final int ADMIN_PERMISSION_LEVEL = 2;
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher, CommandBuildContext context) {
-
-        dispatcher.register(Commands.literal("foodhistory")
-                .requires(
-                        source -> source.hasPermission(
-                                PERMISSION_LEVEL
-                        )
-                )
+        dispatcher.register(Commands.literal("food")
+                .executes(commandContext -> nextMilestone(commandContext.getSource()))
                 .then(
                         Commands.literal("clear")
+                                .requires(source -> source.hasPermission(ADMIN_PERMISSION_LEVEL))
                                 .executes(
                                         commandContext -> clearFoods(
                                                 commandContext.getSource(),
@@ -84,6 +82,7 @@ public class FoodHistoryCommand {
                 )
                 .then(
                         Commands.literal("add")
+                                .requires(source -> source.hasPermission(ADMIN_PERMISSION_LEVEL))
                                 .then(
                                         Commands.argument(
                                                         "food",
@@ -126,7 +125,7 @@ public class FoodHistoryCommand {
                                 )
                 )
                 .then(
-                        Commands.literal("get")
+                        Commands.literal("history")
                                 .executes(
                                         commandContext -> getFood(
                                                 commandContext.getSource(),
@@ -193,6 +192,7 @@ public class FoodHistoryCommand {
                         Commands.literal(
                                 "addall"
                         )
+                                .requires(source -> source.hasPermission(ADMIN_PERMISSION_LEVEL))
                                 .executes(
                                         commandContext -> addAll(
                                                 commandContext.getSource(),
@@ -367,6 +367,25 @@ public class FoodHistoryCommand {
 
         return result;
     }
+
+    private static int nextMilestone(CommandSourceStack sourceStack) {
+        ServerPlayer player = sourceStack.getPlayer();
+        IFoodHistory foodHistory = ((IPlayer) player).soldisco$getFoodHistory();
+        int nextMilestone = ((IPlayer) player).getNextMilestone();
+        int foodsEaten = foodHistory.size();
+        int foodsNeeded = nextMilestone - foodsEaten;
+        sourceStack.sendSuccess(
+                () -> Component.translatable(
+                        "commands.soldisco.foodhistory.next",
+                        player.getDisplayName(),
+                        foodsNeeded,
+                        nextMilestone
+                ),
+                false
+        );
+        return foodsNeeded;
+    }
+
 
     private static int getFood(
             CommandSourceStack sourceStack,
