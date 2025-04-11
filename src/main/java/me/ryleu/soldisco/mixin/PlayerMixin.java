@@ -63,7 +63,7 @@ public class PlayerMixin implements IPlayer {
                     if (milestoneReached){
                         lsPlayer.gainHeart(
                                 "Food Milestone!",
-                                foodCount + " foods eaten, gain a ♥!");
+                                foodCount + " unique foods eaten! Gain a heart!");
 
                     }
                 }
