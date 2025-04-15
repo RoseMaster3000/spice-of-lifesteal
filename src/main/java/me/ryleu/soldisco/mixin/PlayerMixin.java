@@ -28,7 +28,7 @@ import static me.ryleu.soldisco.component.SOLDiscoComponents.FOOD_HISTORY_COMPON
 @Mixin(Player.class)
 public class PlayerMixin implements IPlayer {
     @Unique
-    private static final int[] TARGET_MILESTONES = {2,10,25,50,75,100,135,165,190,215,240,265,290,315,340,365,390,400,402,404,406,408,409,410,411,412,413};
+    private static final int[] TARGET_MILESTONES = {2,10,25,50,76,101,125,148,170,191,211,230,248,265,281,297,312,326,339,351,362,372,381,389,396,398,400};
 
     @Inject(at = @At("HEAD"), method = "eat(Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/food/FoodProperties;)Lnet/minecraft/world/item/ItemStack;")
     private void onEat(Level level, ItemStack itemStack, FoodProperties foodProperties, CallbackInfoReturnable<ItemStack> cir) {
