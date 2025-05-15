@@ -137,6 +137,7 @@ public class FoodHistoryCommand {
                                                 "target",
                                                 EntityArgument.player()
                                         )
+                                                .requires(source -> source.hasPermission(ADMIN_PERMISSION_LEVEL))
                                                 .executes(
                                                         commandContext -> getFood(
                                                                 commandContext.getSource(),
@@ -174,6 +175,7 @@ public class FoodHistoryCommand {
                                                                 "targets",
                                                                 EntityArgument.players()
                                                         )
+                                                                .requires(source -> source.hasPermission(ADMIN_PERMISSION_LEVEL))
                                                                 .executes(
                                                                         commandContext -> queryFood(
                                                                                 commandContext.getSource(),
